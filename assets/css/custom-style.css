@@ -104,8 +104,8 @@ footer.main-footer .footer-text a:hover {
 
 /*网格背景*/
 .io-grey-mode .page-container .grid-bg {
-    background-image: linear-gradient(rgba(49, 214, 126, 0.08) 21px, transparent 0); /* , linear-gradient(90deg, rgba(49, 214, 186, 0.05) 0px, transparent 0) */
-    background-size: 21px;
+    background-image: linear-gradient(rgba(49, 214, 126, 0.08) 21px, transparent 0), linear-gradient(90deg, rgba(49, 214, 186, 0.05) 0px, transparent 0); /* , linear-gradient(90deg, rgba(49, 214, 186, 0.05) 0px, transparent 0) */
+    background-size: 42px 42px;
     background-color: rgb(255, 255, 255);
 }
 
