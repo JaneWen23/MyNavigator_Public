@@ -52,6 +52,7 @@ config.toml
 
 ### 首先注释掉不需要的东西
 
+![](readme_figures/step1.jpg)
 - 右上角的一言
   - 在 content_header.html 里, 注释很贴心地标出了开始和结束的地方.
 - header 正中央的搜索引擎、右上角的搜索引擎: 
@@ -67,6 +68,7 @@ config.toml
 
 ### 然后改 icon, 字体大小, 颜色之类
 
+![](readme_figures/step2.jpg)
 - 页面主体的导航类别标题的 icon 与左边 sidebar 的 icon 保持一致 
   - 在 content_main.html 中找 “icon” 字眼(大概, 有点忘了), 改后是这样:
   
@@ -91,10 +93,11 @@ config.toml
 
 ### 以及改一点布局
 
+![](readme_figures/step3.jpg)
 - “展开/收起左边栏” 的按钮挪进左边 sidebar 内
   - 这个按钮叫 “header-mini-btn”, 把它的代码块从 “content_header.html” 挪到 “sidebar.html” 就行, 目标位置的确定要看这些 icon 的顺序, 比如我需要它在 “网站类别” 的 icon 的上边, 那就放到 “网站类别” 那块代码的前方. 反正最后都会拼成一个文件, 变量啥的应该都是全局的.
 - 天气组件挪到原来 “一言” 的位置
-  - 方法同上.
+  - 方法同上. (Edit: 瞧瞧这一言, 多损呐)
 
 ### 最后是细节控才会注意的一些 refinements
 - 去掉 Hugo 生成时的 “found no layout file for "html" for kind "taxonomy" ” 警告:
