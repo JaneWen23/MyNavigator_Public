@@ -1,6 +1,6 @@
 # JaneWen23.github.io
 
-这是基于开源框架 [WebStack](https://github.com/shenweiyan/WebStack-Hugo) 改造而成的网页, 是一个ISP开发相关的导航网页, 收录了一些权威网站、一些很好的教程网站和博客. ➡️(导航网页[点这里](https://janewen23.github.io))⬅️
+这是基于开源框架 [WebStack](https://github.com/shenweiyan/WebStack-Hugo) 改造而成的网页, 是一个ISP开发相关的导航网页, 收录了一些权威网站、一些很好的教程网站和博客. ➡️(导航网页[点这里](https://janewen23.github.io/MyNavigator_Public/))⬅️
 
 这个 repo, 除了README, 其他文件都是用 [Hugo](https://github.com/gohugoio/hugo) 生成的, 我直接编辑的代码在本地, 没有上传. Hugo 生成的代码跟我本地的代码有些不一样.
 
