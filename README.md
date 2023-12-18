@@ -1,4 +1,4 @@
-# JaneWen23.github.io
+# My Navigator
 
 这是基于开源框架 [WebStack](https://github.com/shenweiyan/WebStack-Hugo) 改造而成的网页, 是一个ISP开发相关的导航网页, 收录了一些权威网站、一些很好的教程网站和博客. ➡️(导航网页[点这里](https://janewen23.github.io/MyNavigator_Public/))⬅️
 
