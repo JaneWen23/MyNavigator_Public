@@ -3,7 +3,7 @@
         // 侧栏菜单初始状态设置
         if(theme.minNav != '1')trigger_resizable(true);
         // 主题状态
-        switch_mode(); 
+        // switch_mode(); 
         // 搜索模块
         //intoSearch();
         // 粘性页脚
@@ -199,8 +199,51 @@
     // });
 
     //夜间模式
-    $(document).on('click', '.switch-dark-mode', function(event) {
-        event.preventDefault();
+    // 不再支持手动切换, 只可自动
+    // $(document).on('click', '.switch-dark-mode', function(event) {
+    //     event.preventDefault();
+    //     $.ajax({
+    //         url: theme.ajaxurl,
+    //         type: 'POST',
+    //         dataType: 'html',
+    //         data: {
+    //             mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
+    //             action: 'switch_dark_mode',
+    //         },
+    //     })
+    //     .done(function(response) {
+    //         $('body').toggleClass('io-black-mode '+theme.defaultclass);
+    //         switch_mode(); 
+    //         $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
+    //         //$('.switch-dark-mode').removeAttr('aria-describedby');
+    //     })
+    // });
+
+    // 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
+    // function switch_mode(){
+    //     if($('body').hasClass('io-black-mode')){
+    //         if($(".switch-dark-mode").attr("data-original-title"))
+    //             $(".switch-dark-mode").attr("data-original-title","日间模式");
+    //         else
+    //             $(".switch-dark-mode").attr("title","日间模式");
+    //         $(".mode-ico").removeClass("icon-night");
+    //         $(".mode-ico").addClass("icon-light");
+    //     }
+    //     else{
+    //         if($(".switch-dark-mode").attr("data-original-title"))
+    //             $(".switch-dark-mode").attr("data-original-title","夜间模式");
+    //         else
+    //             $(".switch-dark-mode").attr("title","夜间模式");
+    //         $(".mode-ico").removeClass("icon-light");
+    //         $(".mode-ico").addClass("icon-night");
+    //     }
+    // }
+
+    // 媒体查询暗黑模式 (刚打开/刷新网页时)
+    const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    if (darkModeQuery.matches) {
+        // 处于深色模式
+        console.log("dark mode");
         $.ajax({
             url: theme.ajaxurl,
             type: 'POST',
@@ -212,29 +255,41 @@
         })
         .done(function(response) {
             $('body').toggleClass('io-black-mode '+theme.defaultclass);
-            switch_mode(); 
+            //switch_mode(); 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
             $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
             //$('.switch-dark-mode').removeAttr('aria-describedby');
         })
-    });
-    function switch_mode(){
-        if($('body').hasClass('io-black-mode')){
-            if($(".switch-dark-mode").attr("data-original-title"))
-                $(".switch-dark-mode").attr("data-original-title","日间模式");
-            else
-                $(".switch-dark-mode").attr("title","日间模式");
-            $(".mode-ico").removeClass("icon-night");
-            $(".mode-ico").addClass("icon-light");
-        }
-        else{
-            if($(".switch-dark-mode").attr("data-original-title"))
-                $(".switch-dark-mode").attr("data-original-title","夜间模式");
-            else
-                $(".switch-dark-mode").attr("title","夜间模式");
-            $(".mode-ico").removeClass("icon-light");
-            $(".mode-ico").addClass("icon-night");
-        }
+    } else {
+        // 处于浅色模式
+        console.log("light mode"); // 什么也不用做, 就是默认
     }
+    // 持续监听深色浅色模式的变化:
+    darkModeQuery.addEventListener("change", (e) => {
+        console.log(e.matches ? "深色模式" : "浅色模式");
+        if (e.matches) {
+            // 处于深色模式
+            $.ajax({
+                url: theme.ajaxurl,
+                type: 'POST',
+                dataType: 'html',
+                data: {
+                    mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
+                    action: 'switch_dark_mode',
+                },
+            })
+            .done(function(response) {
+                $('body').toggleClass('io-black-mode '+theme.defaultclass);
+                //switch_mode(); 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
+                $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
+                //$('.switch-dark-mode').removeAttr('aria-describedby');
+            })
+        } else {
+            // 处于浅色模式
+            $('body').toggleClass('io-black-mode '+theme.defaultclass);
+            //switch_mode(); 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
+        }
+    });
+
     //返回顶部
     $(window).scroll(function () {
         if ($(this).scrollTop() >= 50) {
@@ -1291,7 +1346,7 @@
 // 	}
 // 	return popup;
 // }
-console.log("\n %c WebStack-Hugo 导航主题 By ShumLab %c https://www.shumlab.com/ \n", "color: #ffffff; background: #f1404b; padding:5px 0;", "background: #030307; padding:5px 0;");
+console.log("\n %c MyNavigator 导航主题 By Jane Wen\n", "color: #ffffff; background: #f1404b; padding:5px 0;", "background: #030307; padding:5px 0;");
 
 /**
  * Minified by jsDelivr using Terser v5.3.5.
