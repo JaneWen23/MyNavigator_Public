@@ -263,17 +263,18 @@
             console.log($('body').hasClass('io-black-mode'));
             console.log($('body').hasClass('io-grey-mode'));
             //switch_mode();
-            $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
+            //$("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
             //$('.switch-dark-mode').removeAttr('aria-describedby');
         })
     } else {
         // 处于浅色模式
+        console.log("light mode");
         $.ajax({
             url: theme.ajaxurl,
             type: 'POST',
             dataType: 'html',
             data: {
-                mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
+                mode_toggle: $('body').hasClass('io-grey-mode') === true ? 1 : 0,
                 action: 'switch_grey_mode',
             },
         })
@@ -284,7 +285,7 @@
             console.log($('body').hasClass('io-black-mode'));
             console.log($('body').hasClass('io-grey-mode'));
             //switch_mode();
-            $("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
+            //$("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
         })
     }
     // 持续监听深色浅色模式的变化:
@@ -308,7 +309,7 @@
                 console.log($('body').hasClass('io-black-mode'));
                 console.log($('body').hasClass('io-grey-mode'));
                 //switch_mode();
-                $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
+                //$("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
             })
         } else {
             // 处于浅色模式
@@ -317,7 +318,7 @@
                 type: 'POST',
                 dataType: 'html',
                 data: {
-                    mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
+                    mode_toggle: $('body').hasClass('io-grey-mode') === true ? 1 : 0,
                     action: 'switch_grey_mode',
                 },
             })
@@ -328,7 +329,7 @@
                 console.log($('body').hasClass('io-black-mode'));
                 console.log($('body').hasClass('io-grey-mode'));
                 //switch_mode();
-                $("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
+                //$("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
             })
         }
     });
