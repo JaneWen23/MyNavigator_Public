@@ -200,145 +200,71 @@
 
     //夜间模式
 
-    // $(document).on('click', '.switch-dark-mode', function(event) {
-    //     event.preventDefault();
-    //     $.ajax({
-    //         url: theme.ajaxurl,
-    //         type: 'POST',
-    //         dataType: 'html',
-    //         data: {
-    //             mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
-    //             action: 'switch_dark_mode',
-    //         },
-    //     })
-    //     .done(function(response) {
-    //         console.log($('body').hasClass('io-black-mode'));
-    //         console.log($('body').hasClass('io-grey-mode'));
-    //         $('body').toggleClass('io-black-mode '+theme.defaultclass);
-    //         console.log($('body').hasClass('io-black-mode'));
-    //         console.log($('body').hasClass('io-grey-mode'));
-    //         switch_mode(); 
-    //         $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
-    //         //$('.switch-dark-mode').removeAttr('aria-describedby');
-    //     })
-    // });
+    $(document).on('click', '.switch-dark-mode', function(event) {
+        event.preventDefault();
+        $.ajax({
+            url: theme.ajaxurl,
+            type: 'POST',
+            dataType: 'html',
+            data: {
+                mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
+                action: 'switch_dark_mode',
+            },
+        })
+        .done(function(response) {
+            $('body').toggleClass('io-black-mode '+theme.defaultclass);
+            switch_mode(); 
+            $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
+        })
+    });
 
-    // function switch_mode(){
-    //     if($('body').hasClass('io-black-mode')){
-    //         if($(".switch-dark-mode").attr("data-original-title"))
-    //             $(".switch-dark-mode").attr("data-original-title","日间模式");
-    //         else
-    //             $(".switch-dark-mode").attr("title","日间模式");
-    //         $(".mode-ico").removeClass("icon-night");
-    //         $(".mode-ico").addClass("icon-light");
-    //     }
-    //     else{
-    //         if($(".switch-dark-mode").attr("data-original-title"))
-    //             $(".switch-dark-mode").attr("data-original-title","夜间模式");
-    //         else
-    //             $(".switch-dark-mode").attr("title","夜间模式");
-    //         $(".mode-ico").removeClass("icon-light");
-    //         $(".mode-ico").addClass("icon-night");
-    //     }
-    // }
+    function switch_mode(){
+        if($('body').hasClass('io-black-mode')){
+            if($(".switch-dark-mode").attr("data-original-title"))
+                $(".switch-dark-mode").attr("data-original-title","日间模式");
+            else
+                $(".switch-dark-mode").attr("title","日间模式");
+            $(".mode-ico").removeClass("icon-night");
+            $(".mode-ico").addClass("icon-light");
+        }
+        else{
+            if($(".switch-dark-mode").attr("data-original-title"))
+                $(".switch-dark-mode").attr("data-original-title","夜间模式");
+            else
+                $(".switch-dark-mode").attr("title","夜间模式");
+            $(".mode-ico").removeClass("icon-light");
+            $(".mode-ico").addClass("icon-night");
+        }
+    }
 
     // 媒体查询暗黑模式 (刚打开/刷新网页时)
     const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
     if (darkModeQuery.matches) {
         // 处于深色模式
         console.log("dark mode");
-        // $.ajax({
-        //     url: theme.ajaxurl,
-        //     type: 'POST',
-        //     dataType: 'html',
-        //     data: {
-        //         mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
-        //         action: 'switch_dark_mode',
-        //     },
-        // })
-        // .done(function(response) {
-            console.log($('body').hasClass('io-black-mode'));
-            console.log($('body').hasClass('io-grey-mode'));
-            document.body.classList.remove('io-grey-mode');
-            document.body.classList.add('io-black-mode');
-            //$('body').toggleClass('io-black-mode '+theme.defaultclass);
-            console.log($('body').hasClass('io-black-mode'));
-            console.log($('body').hasClass('io-grey-mode'));
-        //     //switch_mode();
-        //     //$("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
-        //     //$('.switch-dark-mode').removeAttr('aria-describedby');
-        // })
+        document.body.classList.remove('io-grey-mode');
+        document.body.classList.add('io-black-mode');
+        switch_mode();
     } else {
         // 处于浅色模式
         console.log("light mode");
-        // $.ajax({
-        //     url: theme.ajaxurl,
-        //     type: 'POST',
-        //     dataType: 'html',
-        //     data: {
-        //         mode_toggle: $('body').hasClass('io-grey-mode') === true ? 1 : 0,
-        //         action: 'switch_grey_mode',
-        //     },
-        // })
-        // .done(function(response) {
-            console.log($('body').hasClass('io-black-mode'));
-            console.log($('body').hasClass('io-grey-mode'));
-            document.body.classList.remove('io-black-mode');
-            document.body.classList.add('io-grey-mode');
-            //$('body').toggleClass('io-black-mode '+theme.defaultclass);
-            console.log($('body').hasClass('io-black-mode'));
-            console.log($('body').hasClass('io-grey-mode'));
-        //    //switch_mode();
-        //   //$("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
-        // })
+        document.body.classList.remove('io-black-mode');
+        document.body.classList.add('io-grey-mode');
+        switch_mode();
     }
     // 持续监听深色浅色模式的变化:
     darkModeQuery.addEventListener("change", (e) => {
         console.log(e.matches ? "深色模式" : "浅色模式");
         if (e.matches) {
             // 处于深色模式
-            // $.ajax({
-            //     url: theme.ajaxurl,
-            //     type: 'POST',
-            //     dataType: 'html',
-            //     data: {
-            //         mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
-            //         action: 'switch_dark_mode',
-            //     },
-            // })
-            // .done(function(response) {
-                console.log($('body').hasClass('io-black-mode'));
-                console.log($('body').hasClass('io-grey-mode'));
-                document.body.classList.remove('io-grey-mode');
-                document.body.classList.add('io-black-mode');
-                //$('body').toggleClass('io-black-mode '+theme.defaultclass);
-                console.log($('body').hasClass('io-black-mode'));
-                console.log($('body').hasClass('io-grey-mode'));
-            //     //switch_mode();
-            //     //$("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
-            // })
+            document.body.classList.remove('io-grey-mode');
+            document.body.classList.add('io-black-mode');
+            switch_mode();
         } else {
             // 处于浅色模式
-            // $.ajax({
-            //     url: theme.ajaxurl,
-            //     type: 'POST',
-            //     dataType: 'html',
-            //     data: {
-            //         mode_toggle: $('body').hasClass('io-grey-mode') === true ? 1 : 0,
-            //         action: 'switch_grey_mode',
-            //     },
-            // })
-            // .done(function(response) {
-                console.log($('body').hasClass('io-black-mode'));
-                console.log($('body').hasClass('io-grey-mode'));
-                document.body.classList.remove('io-black-mode');
-                document.body.classList.add('io-grey-mode');
-                //$('body').toggleClass('io-black-mode '+theme.defaultclass);
-                console.log($('body').hasClass('io-black-mode'));
-                console.log($('body').hasClass('io-grey-mode'));
-            //     //switch_mode();
-            //     //$("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
-            // })
+            document.body.classList.remove('io-black-mode');
+            document.body.classList.add('io-grey-mode');
+            switch_mode();
         }
     });
 
