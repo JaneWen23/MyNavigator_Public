@@ -199,7 +199,7 @@
     // });
 
     //夜间模式
-    // 不再支持手动切换, 只可自动
+
     // $(document).on('click', '.switch-dark-mode', function(event) {
     //     event.preventDefault();
     //     $.ajax({
@@ -212,14 +212,17 @@
     //         },
     //     })
     //     .done(function(response) {
+    //         console.log($('body').hasClass('io-black-mode'));
+    //         console.log($('body').hasClass('io-grey-mode'));
     //         $('body').toggleClass('io-black-mode '+theme.defaultclass);
+    //         console.log($('body').hasClass('io-black-mode'));
+    //         console.log($('body').hasClass('io-grey-mode'));
     //         switch_mode(); 
     //         $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
     //         //$('.switch-dark-mode').removeAttr('aria-describedby');
     //     })
     // });
 
-    // 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
     // function switch_mode(){
     //     if($('body').hasClass('io-black-mode')){
     //         if($(".switch-dark-mode").attr("data-original-title"))
@@ -254,14 +257,35 @@
             },
         })
         .done(function(response) {
+            console.log($('body').hasClass('io-black-mode'));
+            console.log($('body').hasClass('io-grey-mode'));
             $('body').toggleClass('io-black-mode '+theme.defaultclass);
-            //switch_mode(); 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
+            console.log($('body').hasClass('io-black-mode'));
+            console.log($('body').hasClass('io-grey-mode'));
+            //switch_mode();
             $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
             //$('.switch-dark-mode').removeAttr('aria-describedby');
         })
     } else {
         // 处于浅色模式
-        console.log("light mode"); // 什么也不用做, 就是默认
+        $.ajax({
+            url: theme.ajaxurl,
+            type: 'POST',
+            dataType: 'html',
+            data: {
+                mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
+                action: 'switch_grey_mode',
+            },
+        })
+        .done(function(response) {
+            console.log($('body').hasClass('io-black-mode'));
+            console.log($('body').hasClass('io-grey-mode'));
+            $('body').toggleClass('io-black-mode '+theme.defaultclass);
+            console.log($('body').hasClass('io-black-mode'));
+            console.log($('body').hasClass('io-grey-mode'));
+            //switch_mode();
+            $("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
+        })
     }
     // 持续监听深色浅色模式的变化:
     darkModeQuery.addEventListener("change", (e) => {
@@ -278,15 +302,34 @@
                 },
             })
             .done(function(response) {
+                console.log($('body').hasClass('io-black-mode'));
+                console.log($('body').hasClass('io-grey-mode'));
                 $('body').toggleClass('io-black-mode '+theme.defaultclass);
-                //switch_mode(); 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
+                console.log($('body').hasClass('io-black-mode'));
+                console.log($('body').hasClass('io-grey-mode'));
+                //switch_mode();
                 $("#"+ $('.switch-dark-mode').attr('aria-describedby')).remove();
-                //$('.switch-dark-mode').removeAttr('aria-describedby');
             })
         } else {
             // 处于浅色模式
-            $('body').toggleClass('io-black-mode '+theme.defaultclass);
-            //switch_mode(); 深浅色模式切换不再需要通过按钮, 因此不需要此 function (按钮样式相关)
+            $.ajax({
+                url: theme.ajaxurl,
+                type: 'POST',
+                dataType: 'html',
+                data: {
+                    mode_toggle: $('body').hasClass('io-black-mode') === true ? 1 : 0,
+                    action: 'switch_grey_mode',
+                },
+            })
+            .done(function(response) {
+                console.log($('body').hasClass('io-black-mode'));
+                console.log($('body').hasClass('io-grey-mode'));
+                $('body').toggleClass('io-black-mode '+theme.defaultclass);
+                console.log($('body').hasClass('io-black-mode'));
+                console.log($('body').hasClass('io-grey-mode'));
+                //switch_mode();
+                $("#"+ $('.switch-grey-mode').attr('aria-describedby')).remove();
+            })
         }
     });
 
