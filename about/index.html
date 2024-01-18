@@ -286,28 +286,38 @@ var theme = {"ajaxurl":"","addico":"https:\/\/nav.baidu.cn\/wp-content\/themes\/
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function switchNightMode(){
+    
+    
+	
+    
+    
+    
+    
+    
+    
+    
+    
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    if($('body').hasClass('io-black-mode')){
+        document.body.classList.remove('io-black-mode');
+        document.body.classList.add('io-grey-mode');
+        console.log("footer, black==>grey");
+    }
+    else if ($('body').hasClass('io-grey-mode')){
+        document.body.classList.remove('io-grey-mode');
+        document.body.classList.add('io-black-mode');
+        console.log("footer, grey==>black");
+    }
+}
 </script>
 </body>
 </html>
