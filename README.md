@@ -113,8 +113,46 @@ config.toml
   - 为啥要改这个, 因为, 当你在深色模式下, 不小心点了一下 logo, 网页就刷新了, 而且还默认网页被打开时是亮色模式, 要亮瞎了. 我改得比较简单粗暴, 直接让 logo 就是一个图片, 把它周围的 `<a> </a>` 去掉了.
 - 顶部 banner 宽度调整, 透明度、glow调整
   - 这没啥说的, css 里找. 纯属强迫症不改不舒服.
-- 1/18/2024 新增: 让深色/浅色模式随系统自动切换, 取消手动按钮切换
-  - 这部分功能是在 app.mini.js 里, 仅支持手动切换. 在网上查了 javascript 怎么自动切换, 还真有, 于是拿来改改就实现了.
+- 1/18/2024 新增: 让深色/浅色模式随系统自动切换
+  - 这个功能 “主体部分” 是在 app.mini.js 里, 仅支持手动切换. 在网上查了 javascript 怎么自动切换, 还真有, 于是拿来改改就实现了.  
+  - 网上的查方法是这样, 先调用 ```window.matchMedia((prefers-color-scheme: dark)")``` 获取系统的深浅色风格:
+  ```js
+  const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  if (darkModeQuery.matches) {
+      // 处于深色模式
+      // do something
+  } else {
+      // 处于浅色模式
+      //do something
+  }
+  ```
+
+  - 然后 (接着上面的代码) 监听深/浅色的变化:
+  
+  ```js
+  // 持续监听深色浅色模式的变化:
+  darkModeQuery.addEventListener("change", (e) => {
+      console.log(e.matches ? "深色模式" : "浅色模式");
+      if (e.matches) {
+          // 处于深色模式
+          // do something
+      } else {
+          // 处于浅色模式
+          // do something
+      }
+  });
+  ```
+  - 调试的时候可以像上面一样加一句 ```console.log()```, 在浏览器网页上右键打开源码, 那个界面有显示 console 输出的地方, 可以看到 log 的内容.
+  - 现在改变电脑的系统主题时, 可以看到相应的 log, 说明这个代码实现了持续监听的功能. 我们还需要让网页根据监听结果切换深色/浅色模式. 通过研究原作者的代码, 发现切换深浅色, 实际起作用的代码就3行 (这几行代码来自 “footer.html”, 就是说切换深浅色功能的实现, 其实在 “footer.html” 也有一部分):
+
+  ```js
+  // 从深色变为浅色
+  document.body.classList.remove('io-grey-mode'); // 把“浅色” 移出 classList
+  document.body.classList.add('io-black-mode'); // 把 “深色” 放进 classList
+  switch_mode(); // 把右下角的太阳月亮图标切换一下, 这是已经在别处写好的函数
+  ```
+  - 那么就在上面 “do something” 的位置填上这3行代码即可; 浅色变深色的交换一下remove() 和 add() 括号里的名字就行.
+
 
 ## 附上碎碎念笔记
 
