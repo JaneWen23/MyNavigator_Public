@@ -250,7 +250,7 @@
     });
     //夜间(日间)模式手动切换
     $(document).on('click', '.switch-dark-mode', function(event) {
-        switch_mode();
+        // switch_mode(); // not working in expected way
         // $.ajax({
         //     url: theme.ajaxurl,
         //     type: 'POST',

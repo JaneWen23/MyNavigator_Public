@@ -311,11 +311,15 @@ function switchNightMode(){
         document.body.classList.remove('io-black-mode');
         document.body.classList.add('io-grey-mode');
         console.log("footer, black==>grey");
+        $(".mode-ico").removeClass("icon-light");
+        $(".mode-ico").addClass("icon-night");
     }
     else if ($('body').hasClass('io-grey-mode')){
         document.body.classList.remove('io-grey-mode');
         document.body.classList.add('io-black-mode');
         console.log("footer, grey==>black");
+        $(".mode-ico").removeClass("icon-night");
+        $(".mode-ico").addClass("icon-light");
     }
 }
 </script>
