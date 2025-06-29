@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://janewen23.github.io/MyNavigator_Public/</loc>
+    <loc>http://localhost:1313/MyNavigator_Public/</loc>
     <lastmod>2020-07-28T19:27:08+08:00</lastmod>
   </url><url>
-    <loc>https://janewen23.github.io/MyNavigator_Public/about/</loc>
+    <loc>http://localhost:1313/MyNavigator_Public/about/</loc>
     <lastmod>2020-07-28T19:27:08+08:00</lastmod>
   </url><url>
-    <loc>https://janewen23.github.io/MyNavigator_Public/categories/</loc>
+    <loc>http://localhost:1313/MyNavigator_Public/categories/</loc>
   </url><url>
-    <loc>https://janewen23.github.io/MyNavigator_Public/tags/</loc>
+    <loc>http://localhost:1313/MyNavigator_Public/tags/</loc>
   </url>
 </urlset>
